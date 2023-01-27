@@ -6,9 +6,9 @@ public class Exam01 {
 		String name = "상품";
 		double price = 1000.10;
 		
-		System.out.printf("상품의 가격 : %d\n", value);
+		System.out.printf("상품의 가격 : %d\n",value );
 		System.out.printf("%s의 가격 : %d\n", name, value);
-		System.out.printf("%s의 가격 : %d원, %f\n", name, value, price);
+		System.out.printf("%s의 가격 : %d원, %f\n", name,value,price);
 		
 		//printf 옵션 추가
 		value = 11;
@@ -31,5 +31,20 @@ public class Exam01 {
 		
 		//기본 출력문
 		System.out.print("아무것도 없는 print\n");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

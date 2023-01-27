@@ -2,8 +2,8 @@ package com.yedam.variable;
 
 public class Casting {
 	public static void main(String[] args) {
-		int iVar = 65;
-		byte bVar = (byte)iVar;		
+		int iVar = 65; //'A'
+		byte bVar = (byte)iVar;
 		System.out.println(bVar);
 		
 		char cVar = (char)iVar;
@@ -16,6 +16,7 @@ public class Casting {
 		//자동 타입 변환
 		dVar = iVar;
 		System.out.println(dVar);
+		
 		
 	}
 }

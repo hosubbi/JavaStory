@@ -22,33 +22,34 @@ public class Operator {
 		
 		int result3 = (int)(bVar+iVar1+lVar);
 		
-		double dVa12 = 3.14444;
-		double dResult = result3 + dVa12;
+		double dVal2 = 3.14444;
+		double dResult = result3 + dVal2;
 		System.out.println(dResult);
 		
-		int iResult = (int)dVa12 + iVar1;
+		int iResult = (int)dVal2 + iVar1;
 		System.out.println(iResult);
 		
-		//정수간 연산에서 실수가 나오는 경우
-		int iVal2 = 30;
+		// 정수간 연산에서 실수가 나오는 경우
+		int iVal2 = 30; //+,-,*,/
 		double dVal3 = iVal2/4.0;
-		System.out.println(dVal3);
+		
 		
 		int iVal3 = 4;
 		
-		dVal3 = (double)iVal2/iVal3;
+		dVal3 = (double)iVal2/(double)iVal3;
 		
 		System.out.println(dVal3);
 		
 		//String + 연산
+		
 		String str1 = 10+2+"8";
 		System.out.println("str1 : " + str1); //128
 		
 		String str2 = 10+"2"+8;
-		System.out.println("str2 : " + str2); //1028
+		System.out.println("str2 : "+str2); //1028
 		
 		String str3 = "10" + (2+8);
-		System.out.println("str3 : " + str3); //1010
+		System.out.println("str3 : "+str3); //1010
 		
 		//문자열 -> 숫자
 		String iNo = "10"; //int
@@ -70,6 +71,40 @@ public class Operator {
 		
 		System.out.println(str5+str6+str7);
 		
-			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
