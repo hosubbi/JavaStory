@@ -57,11 +57,10 @@ public class day02homework {
 			int m = Integer.parseInt(sc.nextLine());
 			System.out.println("n값을 입력하시오>");
 			int n = Integer.parseInt(sc.nextLine());		
-			for(int j=m; j<=m; j++) {
 				for(int i=1; i<=n; i++) {
-					System.out.println(j + "x" + i + "=" + (j*i));
-				}
-			}
+					System.out.println(m + "x" + i + "=" + (m*i));
+				}		
+			
 			
 			//Q5
 			System.out.println("=====얼음요정의 n*n단=====");
@@ -77,7 +76,9 @@ public class day02homework {
 				}
 				System.out.println();
 			}
-				
+
+			
+			
 
 	}
 
