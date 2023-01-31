@@ -52,16 +52,24 @@ public class day03homework {
 		//추가문제
 			int[] answer = { 1, 4, 4, 3, 1, 4, 4, 2, 1, 3, 2 };
 			int[] counter = new int[4];
-		
+			
 			for (int i = 0; i < answer.length; i++) {
-					
+				for(int j=1; j <= counter.length; j++) {
+					if(answer[i] == j) {
+						counter[j-1] += 1;
+					}
+				}
 			}
 			for (int i = 0; i < counter.length; i++) {
-					/* 해당 부분 코딩 */
-		
+				for (int j = 1; j <= counter[i]; j++) {
+					System.out.print("*");
+				}
 				System.out.println();
 			}
-				
+		//***
+		//**
+		//**
+		//****
 	}
 
 }
