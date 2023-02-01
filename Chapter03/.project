@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-	<name>Chapter05</name>
+	<name>Chapter03</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,14 +13,5 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-=======
-	<name>JavaStory</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-	</buildSpec>
-	<natures>
->>>>>>> branch 'main' of https://github.com/hosubbi/JavaStory.git
 	</natures>
 </projectDescription>
