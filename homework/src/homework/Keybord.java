@@ -2,7 +2,7 @@ package homework;
 
 public class Keybord {
 	//필드
-	String keybord;
+	String name;
 	int price;
 	
 	//생성자
