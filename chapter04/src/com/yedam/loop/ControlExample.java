@@ -7,6 +7,7 @@ public class ControlExample {
 		//랜덤값 중에서 6이 나오면 반복문 멈추는 것
 		while(true) {
 			int num = (int)(Math.random()*6)+1;
+//			count += 1;
 			System.out.println(num);
 			if(num == 6) {
 				break;
