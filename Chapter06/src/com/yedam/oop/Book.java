@@ -67,5 +67,10 @@ public class Book {
 		System.out.println("3) 출판사 : " + publisher);
 		System.out.println("4) 도서번호 : " + isbn);
 	}
+	
+	void setKind(String bookKind) {
+		this.bookKind = bookKind;
+	}
+	
 
 }
