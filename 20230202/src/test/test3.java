@@ -6,6 +6,28 @@ public class test3 {
 		int[] coinUnit = new int[4];
 		int money = 2680;
 		System.out.println("money= " + money);
+
+//		-교수님 version-
+//		for (int i = 0; i < coinUnit.length; i++) {
+//			if(money>500) {
+//				//몫이 500원짜리의 갯수
+//				coinUnit[i] = money/500;
+//				money = money - (coinUnit[i] * 500);
+//				System.out.println("500원 :" + coinUnit[i] +"개");
+//				//money = 180
+//			}else if(money > 100) {
+//				//몫이 100원짜리의 갯수
+//				coinUnit[i] = money/100;
+//				money = money - (coinUnit[i] * 500);
+//				System.out.println("100원 :" + coinUnit[1] +"개");
+//					
+//				}
+//			}
+//		}
+		
+
+		
+		
 		for (int i = 0; i < coinUnit.length; i++) {
 			if(i==0) {
 				coinUnit[i] = money/500;
@@ -22,8 +44,7 @@ public class test3 {
 			if(i==3) {
 				coinUnit[i] = money/10;
 				money = money-(coinUnit[i]*10);
-			}
-		
+			}			
 		}
 		System.out.println("500원 :" + coinUnit[0] +"개");
 		System.out.println("100원 :" + coinUnit[1] +"개");

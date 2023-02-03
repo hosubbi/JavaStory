@@ -36,14 +36,23 @@ public class test5 {
 					System.out.printf("5가 나올 때까지 주사위를 %d번 굴렸습니다\n" ,count);
 					break;
 				case 3:
-					System.out.println(random);
+					
+			
 				case 4:
 					
 					
 				case 5:
-					System.out.println("프로그램 종료");								
-			}
+					System.out.println("프로그램 종료");
+								
+				}
 		}
+		
+
+		
+		
+		
+		
+		
 	}
 	
 	
