@@ -50,8 +50,7 @@ public class day04homework {
 					sum += kbdAry[i].price;
 					exsum = sum - kbdAry[maxindex].price;
 				}
-				System.out.println("최고 가격을 가지는 제품 : " + kbdAry[maxindex].name + "  해당 제품을 제외한 제품들의 총합 : " + exsum);				
-			
+				System.out.println("최고 가격을 가지는 제품 : " + kbdAry[maxindex].name + "  해당 제품을 제외한 제품들의 총합 : " + exsum);							
 			}else if(inputNum == 5) {
 				System.out.println("프로그램 종료");
 				return;
