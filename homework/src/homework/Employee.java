@@ -7,18 +7,29 @@ public class Employee {
 		
 	//생성자
 	
-	
-	public String getName() {
-		return name;
+	public Employee (String name, int anuIncome) {
+		this.name = name;
+		this.anuIncome = anuIncome;
 	}
 	
-	public int getAnuIncome() {
-		return anuIncome;
+	public Employee () {
+		
 	}
 	
+//	public String getName() {
+//		return this.name = name;
+//	}
+	
+//	public int getAnuIncome() {
+//	return this.anuIncome = anuIncome;
+//}
+	
+
+	 
+
 	//메소드
 	public void getInformation() {
-		System.out.println("이름 : " + name + " 연봉 : " + anuIncome);
+		System.out.printf("이름:%s 연봉:%d ",name,anuIncome );
 	}	
 	public void print() {
 		System.out.println("수퍼클래스");

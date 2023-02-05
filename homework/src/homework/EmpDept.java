@@ -6,15 +6,16 @@ public class EmpDept extends Employee {
 	
 	//생성자
 	public EmpDept (String name, int anuIncome, String department) {
-		this.name = name;
-		this.anuIncome = anuIncome;
+		super(name, anuIncome);
 		this.department = department;
+		
 	}
 	
 	//메소드
-	@Override
+	@Override	
 	public void getInformation() {
 		super.getInformation();
+		System.out.printf("부서:%s\n","교육부");
 	}
 
 	@Override
@@ -22,11 +23,4 @@ public class EmpDept extends Employee {
 		super.print();
 		System.out.println("서브클래스");
 	}
-	
-	
-	
-	
-	
-	
-
 }
