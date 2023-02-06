@@ -16,13 +16,13 @@ public class Employee {
 		
 	}
 	
-//	public String getName() {
-//		return this.name = name;
-//	}
+	public String getName() {
+		return name;
+	}
 	
-//	public int getAnuIncome() {
-//	return this.anuIncome = anuIncome;
-//}
+	public int getAnuIncome() {
+	return anuIncome;
+	}
 	
 
 	 

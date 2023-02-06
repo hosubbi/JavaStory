@@ -8,9 +8,10 @@ public class ObesityInfo extends StandardWeightInfo {
 
 	
 	public double getObesity(double weight) {
-		return (weight - getStandarWeight())/getStandarWeight() * 100;
+		return (weight - super.getStandarWeight())/super.getStandarWeight() * 100;
 	}
 	
+	@Override
 	public void getInformation() {
 		String obesityDegree = null;
 		if(getObesity(weight) >= 50) {
@@ -22,6 +23,6 @@ public class ObesityInfo extends StandardWeightInfo {
 		}else {
 			obesityDegree="과체중";
 		}
-		System.out.printf("이름:%s 키:%d 몸무게:%d 비만도:%4.1f 현재상태:%s",name,height,weight,getObesity(weight),obesityDegree);
+		System.out.printf("이름:%s 키:%d 몸무게:%d 비만도:%4.1f 현재상태:%s\n",name,height,weight,getObesity(weight),obesityDegree);
 	}
 }

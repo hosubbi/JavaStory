@@ -8,7 +8,9 @@ public class StandardWeightInfo extends Human{
 	
 	
 	public double getStandarWeight() {
-		return (height-100.0)*0.9;
+//		return (height-100.0)*0.9;
+		double result = (height-100)*0.9;
+		return result;
 	}
 	
 	@Override

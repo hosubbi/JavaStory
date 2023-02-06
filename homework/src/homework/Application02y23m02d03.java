@@ -8,6 +8,13 @@ public class Application02y23m02d03 {
 		
 		Human hu2 = new ObesityInfo("박둘이", 168, 90);
 		hu2.getInformation();
+		
+		Human human = null;
+		
+		human =  new StandardWeightInfo("홍길동", 168, 45);
+		human.getInformation();
+		human = new ObesityInfo("박둘이", 168, 90);
+		human.getInformation();
 	}
 
 }
