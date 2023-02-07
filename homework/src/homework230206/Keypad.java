@@ -1,8 +1,8 @@
 package homework230206;
 
 public interface Keypad {
-	public static final int NORMAL_MODE = 0;
-	public static final int HARD_MODE = 1;
+	public int NORMAL_MODE = 0;  //public static final int
+	public int HARD_MODE = 1; //public static final int 
 	
 	public abstract void leftUpButton();
 	public abstract void leftDownButton();

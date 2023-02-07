@@ -1,10 +1,10 @@
 package homework230206;
 
 public class ArcadeGame implements Keypad{
-	int mode = NORMAL_MODE;
+	private int mode;	
 	
-	public ArcadeGame (int mode) {
-		this.mode = mode;
+	public ArcadeGame () {
+		mode = Keypad.NORMAL_MODE;
 		System.out.println("ArcadeGame 실행");
 	}
 

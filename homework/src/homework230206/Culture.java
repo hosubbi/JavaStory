@@ -15,7 +15,7 @@ public abstract class Culture {
 	}
 	public void setTotalScore(int score) {
 		totalScore += score;		
-		audienceCount += 1;
+		audienceCount++; // audienceCount += 1;
 	}
 	public void getGrade() {
 		int result = (int)(totalScore/audienceCount);
@@ -32,7 +32,38 @@ public abstract class Culture {
 		}
 		
 	}
+	
+	/* 첫번째 방법
+	 * public String getGrade() {
+		int avg = totalScore/audienceCount;
+		String grade = "";
+		switch (avg) {
+		case 1:
+			grade = "☆"
+			break;
+		case 2:
+			grade = "☆☆"
+			break;
+		case 3:
+			grade = "☆☆☆"
+			break;
+		case 4:
+			grade = "☆☆☆☆"
+			break;
+		case 5:
+			grade = "☆☆☆☆☆"
+			break;
+		}
+		return grade;
+	}
+		두번째 방법
+		for(int i = 0; i<avg; i++) {
+			grade += "☆"
+		}
+		return grade;
+	}
 
+	*/
 	public abstract void getInformation();
 		
 }

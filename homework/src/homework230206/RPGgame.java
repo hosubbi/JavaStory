@@ -1,11 +1,11 @@
 package homework230206;
 
 public class RPGgame implements Keypad {
-	int mode = NORMAL_MODE;
+	private int mode;	
 	
-	public RPGgame (int mode) {
-		this.mode = mode;
-		System.out.println("RPGgmae 실행");
+	public RPGgame () {
+		mode = Keypad.NORMAL_MODE;
+		System.out.println("RPGgame 실행");
 	}
 
 	@Override
@@ -21,9 +21,9 @@ public class RPGgame implements Keypad {
 
 	@Override
 	public void rightUpButton() {
-		if(mode == 0) {
+		if(mode == 0 /*Keypad.NORMAL_MODE*/) {
 			System.out.println("캐릭터가 한칸단위로 점프한다.");
-		}else if(mode == 1) {
+		}else if(mode == 1/*Keypad.HARD_MODE*/) {
 			System.out.println("캐릭터가 두칸단위로 점프한다.");
 		}
 	}
