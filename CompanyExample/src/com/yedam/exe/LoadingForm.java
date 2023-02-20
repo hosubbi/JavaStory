@@ -3,6 +3,7 @@ package com.yedam.exe;
 import java.util.Scanner;
 
 import com.yedam.departments.service.DepartmentsService;
+import com.yedam.employee.service.EmployeesService;
 
 public class LoadingForm {
 	
@@ -29,6 +30,7 @@ public class LoadingForm {
 					break;
 				case 2:
 					//사원 관련 프로그램 메뉴 출력
+					employees();
 					break;
 				case 3:
 					System.out.println("프로그램 종료");
@@ -50,6 +52,7 @@ public class LoadingForm {
 			selectNo = Integer.parseInt(sc.nextLine());
 		}
 		
+		//부서 정보 출력
 		private void departments() {
 			
 			int departmentMenu = 0;
@@ -80,6 +83,44 @@ public class LoadingForm {
 					break;
 				case 6:
 					System.out.println("☞부서 업무 종료");
+					break;
+				}
+			}
+			
+			
+		}
+		
+		//사원 정보 출력
+		private void employees() {
+			
+			int employeesMenu = 0;
+			EmployeesService es = new EmployeesService();
+			
+			while(employeesMenu != 6) {
+				//1. 직원관련 프로그램 - 모든 직원 조회, 한명의 직원 조회, 직원 삭제, 수정, 등록
+				System.out.println("============================================================");
+				System.out.println("1. 모든 직원 조회 | 2. 직원 한 명 조회 | 3. 삭제 | 4. 수정 | 5. 등록 | 6. 종료");
+				System.out.println("============================================================");
+				employeesMenu = Integer.parseInt(sc.nextLine());
+			
+				switch (employeesMenu) {
+				case 1:
+					es.getEmployeesList();
+					break;
+				case 2:
+					es.getEmployee();
+					break;
+				case 3:
+					es.deleteEmp();
+					break;
+				case 4:
+					es.modifyEmp();
+					break;
+				case 5:
+					es.insertEmp();
+					break;
+				case 6:
+					System.out.println("☞직원 업무 종료");
 					break;
 				}
 			}

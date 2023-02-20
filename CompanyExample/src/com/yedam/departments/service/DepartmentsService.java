@@ -20,6 +20,7 @@ public class DepartmentsService {
 		}
 		
 	}
+	
 	//부서 조회
 	public void getDepartment() {
 		System.out.println("부서 번호>");
@@ -51,6 +52,7 @@ public class DepartmentsService {
 		
 		System.out.println("지역 번호>");
 		int locNo = Integer.parseInt(sc.nextLine());
+		
 		Departments dept = new Departments();
 		
 		dept.setDepartmentId(deptNo);
