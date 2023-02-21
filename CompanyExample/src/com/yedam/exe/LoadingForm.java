@@ -103,30 +103,23 @@ public class LoadingForm {
 				System.out.println("============================================================");
 				employeesMenu = Integer.parseInt(sc.nextLine());
 			
+				
 				switch (employeesMenu) {
 				case 1:
 					es.getEmployeesList();
 					break;
 				case 2:
-					es.getEmployee();
+					//한명의 사원 조회
 					break;
 				case 3:
-					es.deleteEmp();
-					break;
-				case 4:
-					es.modifyEmp();
-					break;
-				case 5:
 					es.insertEmp();
 					break;
-				case 6:
-					System.out.println("☞직원 업무 종료");
+				case 4:
+					//종료
 					break;
+
 				}
+		
 			}
-			
-			
 		}
-		
-		
 }
