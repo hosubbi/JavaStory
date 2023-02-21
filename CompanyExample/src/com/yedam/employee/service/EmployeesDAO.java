@@ -64,11 +64,9 @@ public class EmployeesDAO extends DAO{
 			if(rs.next()) {
 				employee = new Employees();
 				employee.setEmployeeId(rs.getInt("employee_id"));
-				employee.setEmployeeName(rs.getString("employee_name"));
+				employee.setEmployeeName(rs.getString("last_name"));
 				employee.setJobId(rs.getString("job_id"));
 			}			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -78,9 +76,63 @@ public class EmployeesDAO extends DAO{
 	}
 	
 	//직원 삭제
+	public int deleteEmp(Employees emp) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "DELETE FROM emp WHERE employee_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getEmployeeId());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 	
-
+	//수정
+	public int modifyEmp(Employees emp) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update emp set employee_id = ? where employee_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  emp.getEmployeeId());
+			pstmt.setInt(2,  emp.getEmployeeId());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 	
+	//등록
+	public int insertEmp(Employees emp) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "insert into emp values (?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getEmployeeId());
+			pstmt.setString(2, emp.getEmployeeName());
+			pstmt.setString(3, emp.getJobId());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 	
 	
 }
