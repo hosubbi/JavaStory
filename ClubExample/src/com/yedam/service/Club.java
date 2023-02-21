@@ -1,5 +1,7 @@
 package com.yedam.service;
 
+import java.sql.Date;
+
 public class Club {
 //	CLUB_ID   NOT NULL VARCHAR2(30) 
 //	CLUB_NAME NOT NULL VARCHAR2(12) 
@@ -9,7 +11,7 @@ public class Club {
 	
 	private String clubId;
 	private String clubName;
-	private int joinDate;
+	private Date joinDate;
 	private String clubMail;
 	private int clubAge;
 	public String getClubId() {
@@ -24,10 +26,10 @@ public class Club {
 	public void setClubName(String clubName) {
 		this.clubName = clubName;
 	}
-	public int getJoinDate() {
+	public Date getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(int joinDate) {
+	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
 	public String getClubMail() {
@@ -42,7 +44,6 @@ public class Club {
 	public void setClubAge(int clubAge) {
 		this.clubAge = clubAge;
 	}
-	
-	
+
 	
 }
