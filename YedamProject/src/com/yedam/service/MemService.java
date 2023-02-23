@@ -41,4 +41,26 @@ public class MemService {
 			System.out.println("이메일 수정 실패");
 		}
 	}
+	
+//	회원 본인 계정 탈퇴
+	public void deleteMemOut() {
+		Cafe member = new Cafe();
+		member.setCafeId(CafeService.cafeInfo.getCafeId());
+		
+		int result = MemDAO.getInstance().deleteMemOut(member);
+		
+		//자신의 ID를 넣었다.
+		//로그인 되어 있는 상태에서 회원 탈퇴 -> 로그아웃.
+		if(result > 0) {
+			CafeService.cafeInfo = null; //로그아웃
+			System.out.println("카페 탈퇴 완료");
+		} else {
+			System.out.println("카페 탈퇴 실패");
+		}
+	
+	}
+	
 }
+
+
+

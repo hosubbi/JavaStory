@@ -38,6 +38,7 @@ public class MemDAO extends DAO{
 			return result;
 		}
 		
+		//본인 이메일 수정
 		public int modifyMemEmail(Cafe member) {
 			int result = 0;
 			try {
@@ -58,4 +59,23 @@ public class MemDAO extends DAO{
 			}
 			return result;
 		}
+		
+		//본인 계정 탈퇴
+		public int deleteMemOut(Cafe member) {
+			int result = 0;
+			try {
+				conn();
+				String sql = "delete from cafe where cafe_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, member.getCafeId());
+				result = pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				disconn();
+			}
+			return result;
+		} 
+		
 }

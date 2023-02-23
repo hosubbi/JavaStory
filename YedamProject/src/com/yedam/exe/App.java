@@ -93,8 +93,8 @@ public class App {
 	//회원으로 로그인 했을 때의 메뉴
 	private void memloginMenu() {
 		System.out.println("==================================================");
-		System.out.println("===1. 비밀번호 수정 2. 이메일 수정  3. 게시판 이동  4. 탈퇴===");
-		System.out.println("==================================================");
+		System.out.println("====1. 비밀번호 수정 | 2. 이메일 수정 | 3. 게시판 리스트 ====");
+		System.out.println("==============4. 카페 탈퇴 | 5. 로그 아웃==============");
 		System.out.println("입력>");
 		menu = sc.nextLine();
 		switch (menu) {
@@ -108,10 +108,15 @@ public class App {
 			break;		
 		case "3":
 		//게시판 들어가기
-			
+			bd.enterBoard();
 			break;
 		case "4":
 		//탈퇴
+			ms.deleteMemOut();
+			break;
+		case "5":
+		//이전 화면
+			logoutMenu();
 			break;
 		}
 	}
@@ -137,31 +142,33 @@ public class App {
 		System.out.println("1. 게시판 생성 | 2. 게시판 명 수정 | 3. 게시판 삭제 | 4. 게시판 리스트 | 5. 이전 화면");
 		System.out.println("====================================================================");
 		menu = sc.nextLine();
-		switch(menu){
-		case "1":
-			//게시판 생성
-			bd.insertBoard();
-			BoardMenu();
-			break;
-			
-		case "2":
-			//게시판 명 수정
-			bd.modifyBoardName();
-			BoardMenu();
-			break;
-		case "3":
-			//게시판 삭제
-			bd.deleteBoard();
-			BoardMenu();
-			break;
-		case "4":
-			//게시판 리스트
-			bd.enterBoard();
-			break;
-		case "5":
-			//이전 화면
-			loginMenu();
-			break;
+		while(run) {
+			switch(menu){
+			case "1":
+				//게시판 생성
+				bd.insertBoard();
+				BoardMenu();
+				break;
+				
+			case "2":
+				//게시판 명 수정
+				bd.modifyBoardName();
+				BoardMenu();
+				break;
+			case "3":
+				//게시판 삭제
+				bd.deleteBoard();
+				BoardMenu();
+				break;
+			case "4":
+				//게시판 리스트
+				bd.enterBoard();
+				break;
+			case "5":
+				//이전 화면
+				loginMenu();
+				break;
+			}
 		}
 	}
 	
@@ -170,40 +177,6 @@ public class App {
 	
 	
 	
-	//국내 음악 추천 게시판 접속(공통)
-	private void connBoard() {
-		System.out.println("☆★☆★☆★☆★☆★☆★☆★국내 음악 추천 게시판입니다★☆★☆★☆★☆★☆★☆★☆★☆");
-		System.out.println("=======1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B=======");
-		System.out.println("====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 그 외...===");
-		System.out.println("==================================================");
-		System.out.println("입력 >");
-		menu = sc.nextLine();
-		switch (menu) {
-		case "1":
-		//1번 게시판 접속
-			break;
-		case "2":
-		//2번 게시판 접속
-			break;		
-		case "3":
-		//3번 게시판 접속
-			break;
-		case "4":
-		//4번 게시판 접속
-			break;
-		case "5":
-		//4번 게시판 접속
-			break;
-		case "6":
-		//6번 게시판 접속
-			break;
-		case "7":
-		//7번 게시판 접속
-			break;
-		case "8":
-		//8번 게시판 접속
-			break;
-		}
-	}
+	
 
 }
