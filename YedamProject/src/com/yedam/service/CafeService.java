@@ -9,7 +9,6 @@ public class CafeService {
 	public static Cafe cafeInfo = null;
 	public static String grade = null;
 	Scanner sc = new Scanner(System.in);
-	
 	//1 로그인 메뉴
 	public void login() {  
 		Cafe cafe = null;
@@ -20,6 +19,7 @@ public class CafeService {
 		String cafePw = sc.nextLine();
 		
 		cafe = CafeDAO.getInstance().login(cafeId);
+		
 		
 		
 		if(cafe != null) { //데이터가 조회 되었다.
@@ -44,46 +44,39 @@ public class CafeService {
 		
 	//2 회원가입 메뉴	
 	public void joinCafe() {
+		
+
 		System.out.println("====================회원 가입====================");
 		System.out.println("회원 아이디>");
 		String cafeId = sc.nextLine();
-		
+				
 		System.out.println("회원 이름>");
 		String cafeName = sc.nextLine();
-		
+				
 		System.out.println("회원 비밀번호>");
 		String cafePw = sc.nextLine();
-		
+				
 		System.out.println("회원 이메일>");
 		String cafeEmail = sc.nextLine();
-
+			
 		Cafe cafe = new Cafe();
-		
+				
 		cafe.setCafeId(cafeId);
 		cafe.setCafeName(cafeName);
 		cafe.setCafePw(cafePw);
 		cafe.setCafeEmail(cafeEmail);
-		
+				
+				
 		int result = CafeDAO.getInstance().joinCafe(cafe);
 				
-			if(result > 0) {
-				System.out.println("회원 가입 완료");
-			}else {			
-				System.out.println("회원 가입 실패");				
-			}
-		
-//			if(cafe.getCafeId() != cafe.getCafeId()){
-//				if(result > 0) {
-//					System.out.println("회원 가입 완료");
-//				} else {
-//					System.out.println("회원 가입 실패");
-//				}
-//			}else {				
-//				
-//			}
-//		}			
-	}
-	
+		if(result > 0) {
+			System.out.println("회원 가입 완료");
+		}else {			
+			System.out.println("회원 가입 실패");
+		}
+				
+	}		
+
 	//관-1 전체 회원 정보 조회
 	public void getCafeList() {
 		List<Cafe> list = CafeDAO.getInstance().getCafeList();
@@ -196,6 +189,20 @@ public class CafeService {
 		}	
 	}
 	
-	//관-5 
+	//관-5  회원 강퇴
+	public void deleteCafe() {
+		System.out.println("회원 ID >");
+		int result = CafeDAO.getInstance().deleteCafe(sc.nextLine());
+		
+		//자신의 ID를 넣었다.
+		//로그인 되어 있는 상태에서 회원 탈퇴 -> 로그아웃.
+		if(result > 0) {
+		//  CafeService.cafeInfo = null; --자신의 아이디 로그아웃 할 때
+			System.out.println("회원 ID 삭제 완료");
+		} else {
+			System.out.println("회원 ID 삭제 실패");
+		}
+	}
 	
+
 }
