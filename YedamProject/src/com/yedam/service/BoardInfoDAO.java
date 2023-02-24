@@ -1,0 +1,76 @@
+package com.yedam.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.yedam.common.DAO;
+
+public class BoardInfoDAO extends DAO{
+	BoardService bs = new BoardService();
+	
+	private static BoardInfoDAO biDao = new BoardInfoDAO();
+	
+	private BoardInfoDAO() {
+		
+	}
+	
+	static BoardInfoDAO getInstance() {
+		return biDao;
+	}
+	
+//	String cafeId;
+//	String singer;
+//	String music;
+//	String album;
+//	String genre;
+//	String musicExplain;
+//	String link;
+//	String writeDate;
+//	String cafeGrade;
+//	String accusation; 
+	
+	public BoardInfo getBoardInfo(int num) {
+		BoardInfo bi = null;
+		try {
+			conn();
+			String sql = "select *\r\n"
+					+ "from boardinfo\r\n"
+					+ "where genre = (\r\n"
+					+ "                select board_name\r\n"
+					+ "                from generboard\r\n"
+					+ "                where board_num = ?\r\n"
+					+ "                )";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				bi = new BoardInfo();
+				bi.setCafeId(rs.getString("cafe_id"));
+				bi.setSinger(rs.getString("singer"));
+				bi.setMusic(rs.getString("music"));
+				bi.setAlbum(rs.getString("album"));
+				bi.setGenre(rs.getString("genre"));
+				bi.setMusicExplain(rs.getString("music_explain"));  
+				bi.setLink(rs.getString("link_service"));
+				bi.setWriteDate(rs.getDate("write_date"));
+				bi.setCafeGrade(rs.getString("cafe_grade"));
+				bi.setRecomendNum(rs.getInt("recomend_num"));
+				bi.setAccusation(rs.getInt("accusation"));
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return bi;
+	
+	}
+	
+	
+	
+	
+	
+}

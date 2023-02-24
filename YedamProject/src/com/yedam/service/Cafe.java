@@ -13,8 +13,9 @@ public class Cafe {
 	private String cafeName;
 	private String cafePw;
 	private String cafeEmail;
+	private String cafeGrade;
 	
-	
+
 	public String getCafeId() {
 		return cafeId;
 	}
@@ -46,12 +47,21 @@ public class Cafe {
 		this.joinDate = joinDate;
 	}
 	private Date joinDate;
-
+	
+	public String getCafeGrade() {
+		return cafeGrade;
+	}
+	public void setCafeGrade(String cafeGrade) {
+		this.cafeGrade = cafeGrade;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cafe [cafeId=" + cafeId + ", cafeName=" + cafeName + ", cafePw=" + cafePw + ", cafeEmail=" + cafeEmail
-				+ ", joinDate=" + joinDate + "]";
+				+ ", cafeGrade=" + cafeGrade + ", joinDate=" + joinDate + "]";
 	}
+	
+	
 	
 	
 }

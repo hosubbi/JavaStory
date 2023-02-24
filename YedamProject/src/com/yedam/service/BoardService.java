@@ -3,8 +3,11 @@ package com.yedam.service;
 import java.util.List;
 import java.util.Scanner;
 
+import com.yedam.exe.App;
+
 public class BoardService {
 	//1. 게시판 만들기
+	BoardInfoService bi = new BoardInfoService();
 	public static int enterBoardNum = 0;
 	
 	Scanner sc = new Scanner(System.in);
@@ -63,9 +66,9 @@ public class BoardService {
 	
 	//4. 게시판 리스트
 	public void enterBoard() {
-		
+//		App ap = new App();
 		List<Board> list = BoardDAO.getInstance().enterBoard();
-		System.out.println("============================================");
+		System.out.println("====================================================");
 		for(int i=0; i<list.size(); i++) {
 			System.out.print(list.get(i).getBoardNum() + "---");
 			System.out.println(list.get(i).getBoardName());
@@ -81,21 +84,25 @@ public class BoardService {
 			System.out.println(list.get(enterBoardNum-1).getBoardName() + "에 입장합니다");
 			connFMusic();
 		}else {
-			System.out.println("잘못입력하였습니다.");
+			System.out.println("게시판이 없습니다.");
+			enterBoard();
 		}
+		
 	}
 	
 	//5. 국내 음악 추천 게시판 리스트
 	public void connKMusic() {
 		System.out.println("☆★☆★☆★☆★☆★☆★☆★국내 음악 추천 게시판입니다★☆★☆★☆★☆★☆★☆★☆★☆");
-		System.out.println("==========1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B=========");
-		System.out.println("======5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 그 외...======");
-		System.out.println("=======================9. 이전 화면=======================");
+		System.out.println("=========1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B========");
+		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 그 외...=====");
+		System.out.println("======================9. 이전 화면======================");
 		System.out.println("입력 >");
 		enterBoardNum = Integer.parseInt(sc.nextLine());
 		switch (enterBoardNum) {
 			case 1:
 			//1번 게시판 접속
+				System.out.println("발라드 게시판 입니다");
+				bi.getBoardInfo();
 				break;
 			case 2:
 			//2번 게시판 접속
@@ -105,6 +112,7 @@ public class BoardService {
 				break;
 			case 4:
 			//4번 게시판 접속
+				
 				break;
 			case 5:
 			//4번 게시판 접속
@@ -127,7 +135,7 @@ public class BoardService {
 	
 	public void connFMusic() {
 		System.out.println("☆★☆★☆★☆★☆★☆★☆★해외 음악 추천 게시판입니다★☆★☆★☆★☆★☆★☆★☆★☆");
-		System.out.println("===========1. 해외 음악 추천 리스트 | 2. 이전 화면=============");
+		System.out.println("==========1. 해외 음악 추천 리스트 | 2. 이전 화면============");
 		System.out.println("입력 >");
 		enterBoardNum = Integer.parseInt(sc.nextLine());
 		switch (enterBoardNum) {

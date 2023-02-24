@@ -35,7 +35,8 @@ public class CafeDAO extends DAO{
 				cf.setCafeName(rs.getString("cafe_name"));
 				cf.setCafePw(rs.getString("cafe_pw"));
 				cf.setCafeEmail(rs.getString("cafe_email"));
-				cf.setJoinDate(rs.getDate("cafe_joindate"));					
+				cf.setJoinDate(rs.getDate("cafe_joindate"));
+				cf.setCafeGrade(rs.getString("cafe_grade"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -108,7 +109,8 @@ public class CafeDAO extends DAO{
 				cafe.setCafeName(rs.getString("cafe_name"));
 				cafe.setCafePw(rs.getString("cafe_pw"));
 				cafe.setCafeEmail(rs.getString("cafe_email"));
-				cafe.setJoinDate(rs.getDate("cafe_joindate"));     
+				cafe.setJoinDate(rs.getDate("cafe_joindate"));
+				cafe.setCafeGrade(rs.getString("cafe_grade"));  
 				list.add(cafe);
 			}
 		}catch(Exception e) {
@@ -140,6 +142,7 @@ public class CafeDAO extends DAO{
 				cafe.setCafePw(rs.getString("cafe_pw"));
 				cafe.setCafeEmail(rs.getString("cafe_email"));
 				cafe.setJoinDate(rs.getDate("cafe_joindate"));
+				cafe.setCafeGrade(rs.getString("cafe_grade"));  
 			}
 			
 		}catch(Exception e) {
@@ -155,13 +158,14 @@ public class CafeDAO extends DAO{
 		int result = 0;
 		try {
 			conn();
-			String sql ="insert into cafe (cafe_id, cafe_name, cafe_pw, cafe_email)\r\n"
-					+ "values (?, ?, ?, ?)";
+			String sql ="insert into cafe (cafe_id, cafe_name, cafe_pw, cafe_email, cafe_grade)\r\n"
+					+ "values (?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cafe.getCafeId());
 			pstmt.setString(2, cafe.getCafeName());
 			pstmt.setString(3, cafe.getCafePw());
 			pstmt.setString(4, cafe.getCafeEmail());
+			pstmt.setString(5, cafe.getCafeGrade());
 			
 			result = pstmt.executeUpdate();
 			
