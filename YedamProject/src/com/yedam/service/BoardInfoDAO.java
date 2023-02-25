@@ -28,8 +28,53 @@ public class BoardInfoDAO extends DAO{
 //	String writeDate;
 //	String cafeGrade;
 //	String accusation; 
+
 	
-	public BoardInfo getBoardInfo(int num) {
+//----------------------------------------잠시 보류	
+//	public BoardInfo getBoardInfo(int num) {
+//		BoardInfo bi = null;
+//		try {
+//			conn();
+//			String sql = "select *\r\n"
+//					+ "from boardinfo\r\n"
+//					+ "where genre = (\r\n"
+//					+ "                select board_name\r\n"
+//					+ "                from generboard\r\n"
+//					+ "                where board_num = ?\r\n"
+//					+ "                )";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, num);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				bi = new BoardInfo();
+//				bi.setBoardNum(rs.getInt("board_num"));
+//				bi.setCafeId(rs.getString("cafe_id"));
+//				bi.setSinger(rs.getString("singer"));
+//				bi.setMusic(rs.getString("music"));
+//				bi.setAlbum(rs.getString("album"));
+//				bi.setGenre(rs.getString("genre"));
+//				bi.setMusicExplain(rs.getString("music_explain"));  
+//				bi.setLink(rs.getString("link_service"));
+//				bi.setWriteDate(rs.getDate("write_date"));
+//				bi.setCafeGrade(rs.getString("cafe_grade"));
+//				bi.setRecomendNum(rs.getInt("recomend_num"));
+//				bi.setAccusation(rs.getInt("accusation"));
+//			}
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconn();
+//		}
+//		return bi;
+//	
+//	}
+//----------------------------------------여기까지
+	
+	public List<BoardInfo> getBoardInfoList(int num){
+		List<BoardInfo> list = new ArrayList<>();
 		BoardInfo bi = null;
 		try {
 			conn();
@@ -45,8 +90,9 @@ public class BoardInfoDAO extends DAO{
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				bi = new BoardInfo();
+				bi.setBoardNum(rs.getInt("board_num"));
 				bi.setCafeId(rs.getString("cafe_id"));
 				bi.setSinger(rs.getString("singer"));
 				bi.setMusic(rs.getString("music"));
@@ -58,19 +104,15 @@ public class BoardInfoDAO extends DAO{
 				bi.setCafeGrade(rs.getString("cafe_grade"));
 				bi.setRecomendNum(rs.getInt("recomend_num"));
 				bi.setAccusation(rs.getInt("accusation"));
+				list.add(bi);
 			}
-			
-		}catch(Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
 			disconn();
 		}
-		return bi;
-	
+		return list;
 	}
-	
-	
-	
 	
 	
 }

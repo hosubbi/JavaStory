@@ -3,6 +3,7 @@ package com.yedam.service;
 import java.sql.Date;
 
 public class BoardInfo {
+//	BOARD_NUM              NUMBER(5)
 //	CAFE_ID       NOT NULL VARCHAR2(15)  --참조
 //	SINGER        NOT NULL VARCHAR2(60)  
 //	MUSIC         NOT NULL VARCHAR2(90)  
@@ -15,6 +16,7 @@ public class BoardInfo {
 //	RECOMEND_NUM           NUMBER(5)     
 //	ACCUSATION             NUMBER(3)
 	
+	int boardNum;
 	String cafeId;
 	String singer;
 	String music;
@@ -27,6 +29,12 @@ public class BoardInfo {
 	int recomendNum;
 	int accusation; 
 	
+	public int getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}
 	public String getCafeId() {
 		return cafeId;
 	}

@@ -68,11 +68,12 @@ public class BoardService {
 	public void enterBoard() {
 //		App ap = new App();
 		List<Board> list = BoardDAO.getInstance().enterBoard();
-		System.out.println("====================================================");
+		System.out.println("=========================================================================");
 		for(int i=0; i<list.size(); i++) {
-			System.out.print(list.get(i).getBoardNum() + "---");
+			System.out.print("==================" + list.get(i).getBoardNum() + "☞☞☞☞☞☞☞☞☞☞☞");
 			System.out.println(list.get(i).getBoardName());
 		}
+		System.out.println("=========================================================================");
 		System.out.print("입장할 게시판 번호를 입력하시오 > ");
 		enterBoardNum = Integer.parseInt(sc.nextLine());
 		
@@ -96,41 +97,42 @@ public class BoardService {
 		System.out.println("=========1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B========");
 		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 그 외...=====");
 		System.out.println("======================9. 이전 화면======================");
-		System.out.println("입력 >");
-		enterBoardNum = Integer.parseInt(sc.nextLine());
-		switch (enterBoardNum) {
-			case 1:
-			//1번 게시판 접속
-				System.out.println("발라드 게시판 입니다");
-				bi.getBoardInfo();
-				break;
-			case 2:
-			//2번 게시판 접속
-				break;		
-			case 3:
-			//3번 게시판 접속
-				break;
-			case 4:
-			//4번 게시판 접속
-				
-				break;
-			case 5:
-			//4번 게시판 접속
-				break;
-			case 6:
-			//6번 게시판 접속
-				break;
-			case 7:
-			//7번 게시판 접속
-				break;
-			case 8:
-			//8번 게시판 접속
-				break;
-			case 9:
-			//9번 : 이전화면
-				enterBoard();
-				break;
-		}
+		bi.getBoardInfoList();
+//		System.out.println("입력 >");
+//		enterBoardNum = Integer.parseInt(sc.nextLine());
+//		switch (enterBoardNum) {
+//			case 1:
+//			//1번 게시판 접속
+//				System.out.println("발라드 게시판 입니다");
+//				bi.getBoardInfo();
+//				break;
+//			case 2:
+//			//2번 게시판 접속
+//				break;		
+//			case 3:
+//			//3번 게시판 접속
+//				break;
+//			case 4:
+//			//4번 게시판 접속
+//				
+//				break;
+//			case 5:
+//			//4번 게시판 접속
+//				break;
+//			case 6:
+//			//6번 게시판 접속
+//				break;
+//			case 7:
+//			//7번 게시판 접속
+//				break;
+//			case 8:
+//			//8번 게시판 접속
+//				break;
+//			case 9:
+//			//9번 : 이전화면
+//				enterBoard();
+//				break;
+//		}
 	}
 	
 	public void connFMusic() {
