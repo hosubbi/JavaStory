@@ -11,6 +11,8 @@ public class BoardService {
 	public static int enterBoardNum = 0;
 	
 	Scanner sc = new Scanner(System.in);
+	
+	//게시판 생성
 	public void insertBoard() {
 		System.out.println("====================게시판 생성====================");
 		System.out.println("게시판 번호 >");

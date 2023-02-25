@@ -114,5 +114,31 @@ public class BoardInfoDAO extends DAO{
 		return list;
 	}
 	
+	public int insertMusic(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql ="Insert into boardinfo (board_num, cafe_id, singer, music, album, genre, music_explain, link_service, cafe_grade)\n"
+					+ "values (?, ?, ?, ?, ?, ?, ?, \n"
+					+ "?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bi.getBoardNum());
+			pstmt.setString(2, bi.getCafeId());
+			pstmt.setString(3, bi.getSinger());
+			pstmt.setString(4, bi.getMusic());
+			pstmt.setString(5, bi.getAlbum());
+			pstmt.setString(6, bi.getGenre());
+			pstmt.setString(7, bi.getMusicExplain());
+			pstmt.setString(8, bi.getLink());
+			pstmt.setString(9, bi.getCafeGrade());
+			result = pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 	
 }

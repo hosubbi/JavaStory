@@ -2,6 +2,8 @@ package com.yedam.service;
 
 public class GenerBoard {
 	int boardNum;
+	String boardName;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -14,5 +16,4 @@ public class GenerBoard {
 	public void setBoardName(String boardName) {
 		this.boardName = boardName;
 	}
-	String boardName;
 }
