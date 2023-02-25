@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class BoardInfoService {
 	Scanner sc = new Scanner(System.in);
 	boolean run = true;
+	int enterGenre = 0;
 	String gener = null;
 //	public void getBoardInfoList() {
 //		
@@ -58,8 +59,10 @@ public class BoardInfoService {
 	//장르별 게시판 입장 후 게시판에 대한 메뉴 들어가기
 	public void getBoardInfoList() {
 		System.out.println("입장할 게시판 번호를 입력하시오 >");
-		List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList(Integer.parseInt(sc.nextLine()));
+		enterGenre = Integer.parseInt(sc.nextLine());
+		List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList(enterGenre);
 		System.out.println("=========================================================================");
+//		System.out.println("========================" + list.get(enterGenre-1).getGenre() +" 추천 게시판 입니다================================");
 		for(int i=0; i<list.size(); i++) {
 			System.out.println("◎No : " + list.get(i).getBoardNum() + " ");
 			System.out.print("◎ID : " + list.get(i).getCafeId() + " ");
