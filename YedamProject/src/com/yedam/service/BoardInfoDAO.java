@@ -10,6 +10,7 @@ public class BoardInfoDAO extends DAO{
 	
 	private static BoardInfoDAO biDao = new BoardInfoDAO();
 	
+	private int num = 0;
 	private BoardInfoDAO() {
 		
 	}
@@ -29,49 +30,7 @@ public class BoardInfoDAO extends DAO{
 //	String cafeGrade;
 //	String accusation; 
 
-	
-//----------------------------------------잠시 보류	
-//	public BoardInfo getBoardInfo(int num) {
-//		BoardInfo bi = null;
-//		try {
-//			conn();
-//			String sql = "select *\r\n"
-//					+ "from boardinfo\r\n"
-//					+ "where genre = (\r\n"
-//					+ "                select board_name\r\n"
-//					+ "                from generboard\r\n"
-//					+ "                where board_num = ?\r\n"
-//					+ "                )";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, num);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				bi = new BoardInfo();
-//				bi.setBoardNum(rs.getInt("board_num"));
-//				bi.setCafeId(rs.getString("cafe_id"));
-//				bi.setSinger(rs.getString("singer"));
-//				bi.setMusic(rs.getString("music"));
-//				bi.setAlbum(rs.getString("album"));
-//				bi.setGenre(rs.getString("genre"));
-//				bi.setMusicExplain(rs.getString("music_explain"));  
-//				bi.setLink(rs.getString("link_service"));
-//				bi.setWriteDate(rs.getDate("write_date"));
-//				bi.setCafeGrade(rs.getString("cafe_grade"));
-//				bi.setRecomendNum(rs.getInt("recomend_num"));
-//				bi.setAccusation(rs.getInt("accusation"));
-//			}
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			disconn();
-//		}
-//		return bi;
-//	
-//	}
-//----------------------------------------여기까지
+
 	//특정 장르 게시판 조회
 	public List<BoardInfo> getBoardInfoList(int num){
 		List<BoardInfo> list = new ArrayList<>();
@@ -175,18 +134,87 @@ public class BoardInfoDAO extends DAO{
 	}
 	
 	//rs 테스트 해보기
-	public int testFunction(BoardInfo bi) {
-		int result = 0;
+	public BoardInfo testFunction(String bi) {
+		BoardInfo bdi = null;
 		
 		try {
 			conn();
-			String sql = "select board_num\n"
-					+ "from generboard\n"
-					+ "where board_name = '트로트'";
+			String sql = "select count(*)\n"
+					+ "from boardinfo\n"
+					+ "where genre = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bi);
+						
+			rs  = pstmt.executeQuery();
+			
+			if (rs.next()){
+				bdi = new BoardInfo();
+				bdi.setGenre(rs.getString("genre"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return bdi;
+	}
+	
+	//나의 게시글 리스트
+	public List<BoardInfo> myBoardList(String Boardkey, String bdkey) {
+		List<BoardInfo> list = new ArrayList<>();
+		BoardInfo bi = null;		
+		try {
+			conn();
+			String sql = "select *\n"
+					+ "from boardinfo\n"
+					+ "where cafe_id = ?\n"
+					+ "and genre = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, Boardkey);
+			pstmt.setString(2, bdkey);
 			
 			rs = pstmt.executeQuery();
 			
+			while(rs.next()) {
+				bi = new BoardInfo();
+				bi.setBoardNum(rs.getInt("board_num"));
+				bi.setCafeId(rs.getString("cafe_id"));
+				bi.setSinger(rs.getString("singer"));
+				bi.setMusic(rs.getString("music"));
+				bi.setAlbum(rs.getString("album"));
+				bi.setGenre(rs.getString("genre"));
+				bi.setMusicExplain(rs.getString("music_explain"));  
+				bi.setLink(rs.getString("link_service"));
+				bi.setWriteDate(rs.getDate("write_date"));
+				bi.setCafeGrade(rs.getString("cafe_grade"));
+				bi.setRecomendNum(rs.getInt("recomend_num"));
+				bi.setAccusation(rs.getInt("accusation"));
+				
+				list.add(bi);
+			}									
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return list;
+	}
+	
+	//내 게시글 삭제
+	public int deleteMyBoard(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "delete from boardinfo\n"
+					+ "where cafe_id = ?\n"
+					+ "and genre = ?\n"
+					+ "and board_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bi.getCafeId());
+			pstmt.setString(2, bi.getGenre());
+			pstmt.setInt(3, bi.getBoardNum());
 			
+			result = pstmt.executeUpdate();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -195,5 +223,36 @@ public class BoardInfoDAO extends DAO{
 		}
 		return result;
 	}
+	
+	//추천하기
+//	public int recomendMem() {
+//		int result = 0;
+//		try {
+//			conn();
+//			String sql = "update boardinfo\n"
+//					+ "set singer = ?, music = ?, album = ?, music_explain = ?, link_service = ?"
+//					+ "where genre = ?\n"
+//					+ "And board_num = ?\n"
+//					+ "And cafe_id = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, bi.getSinger());
+//			pstmt.setString(2, bi.getMusic());
+//			pstmt.setString(3, bi.getAlbum());
+//			pstmt.setString(4, bi.getMusicExplain());
+//			pstmt.setString(5, bi.getLink());
+//			pstmt.setString(6, bi.getGenre());
+//			pstmt.setInt(7, bi.getBoardNum());
+//			pstmt.setString(8, bi.getCafeId());
+//			
+//			
+//			result = pstmt.executeUpdate();
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconn();
+//		}
+//		return result;		
+//	}
 	
 }

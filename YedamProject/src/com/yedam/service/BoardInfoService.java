@@ -124,11 +124,14 @@ public class BoardInfoService {
 					insertMusic();
 					break;
 				case 2:
-					// 본인 게시글 수정
+					// 본인 게시글 리스트 확인 후 수정
+					myBoardList();
 					modifyMusic();
 					break;
 				case 3:
-					// 게시글 삭제
+					// 본인 게시글 리스트 확인 후 게시글 삭제
+					myBoardList();
+					deleteMyBoard();
 					break;
 				case 4:
 					//추천하기
@@ -168,25 +171,19 @@ public class BoardInfoService {
 		String music = sc.nextLine();
 		
 		
-		System.out.println("앨범 제목 (생략은 '0' 입력) >");
+		System.out.println("앨범 제목 (생략 가능) >");
 		String album = sc.nextLine();	
-		if (album == "0") {
-			album = "";
-		}
+		
 //		장르 가져오기 --> genre로 값 받아서 넣음
 //		String genre1 = genre;
 		
-		System.out.println("추천 이유 (생략은 '0' 입력) >");
+		System.out.println("추천 이유 (생략 가능) >");
 		String musicEx = sc.nextLine();
-		if (musicEx == "0") {
-			musicEx = "";
-		}
 		
-		System.out.println("유튜브 or 멜론 링크 (생략은 '0' 입력) >");
+		
+		System.out.println("유튜브 or 멜론 링크 (생략 가능) >");
 		String link = sc.nextLine();
-		if (link == "0") {
-			link = "";
-		}
+		
 		
 		String cafeGrade = CafeService.cafeInfo.getCafeGrade();
 		
@@ -229,23 +226,14 @@ public class BoardInfoService {
 		System.out.println("노래 제목 >");
 		String music = sc.nextLine();
 		
-		System.out.println("앨범 제목 (생략은 '0' 입력) >");
+		System.out.println("앨범 제목 (생략 가능) >");
 		String album = sc.nextLine();	
-		if (album == "0") {
-			album = "";
-		}
 		
-		System.out.println("추천 이유 (생략은 '0' 입력) >");
-		String musicEx = sc.nextLine();
-		if (musicEx == "0") {
-			musicEx = "";
-		}
+		System.out.println("추천 이유 (생략 가능) >");
+		String musicEx = sc.nextLine();		
 		
-		System.out.println("유튜브 or 멜론 링크 (생략은 '0' 입력) >");
-		String link = sc.nextLine();
-		if (link == "0") {
-			link = "";
-		}
+		System.out.println("유튜브 or 멜론 링크 (생략 가능) >");
+		String link = sc.nextLine();		
 		
 		bi.setCafeId(cafeId);
 		bi.setSinger(singer);
@@ -268,6 +256,59 @@ public class BoardInfoService {
 		
 	}
 	
+	//rs구문 테스트 --수정중 
+	public void testFuction() {
+		BoardInfo bi = BoardInfoDAO.getInstance().testFunction(genre);
+		if(bi == null) {
+			System.out.println("조회된 결과 없음");
+		} else {
+			System.out.println("이 장르의 갯수는" + genre + bi.getGenre());
+		}
+		System.out.println("================================");
+		
+	}
 	
+	//나의 게시글 리스트
+	public void myBoardList() {
+		String myId = CafeService.cafeInfo.getCafeId();
+		List<BoardInfo> list = BoardInfoDAO.getInstance().myBoardList(myId, genre);
+		System.out.println("=============================●●●나의 게시글●●●=============================");
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("◎No : " + list.get(i).getBoardNum() + " ");
+			System.out.print("◎ID : " + list.get(i).getCafeId() + " ");
+			System.out.print("◎가수 : " + list.get(i).getSinger() + " ");
+			System.out.print("◎노래 제목 : " + list.get(i).getMusic() + " ");
+			System.out.print("◎앨범 제목 : " + list.get(i).getAlbum() + " ");
+			System.out.println("◎장르 : " + list.get(i).getGenre() + " ");
+			System.out.println("◎추천 이유 : " + list.get(i).getMusicExplain() + " ");
+			System.out.println("◎링크 : " + list.get(i).getLink() + " ");
+			System.out.print("◎작성일 : " + list.get(i).getWriteDate() + " ");
+			System.out.print("◎카페 등급 : " + list.get(i).getCafeGrade() + " ");
+			System.out.print("◎추천수 : " + list.get(i).getRecomendNum() + " ");
+			System.out.println("◎신고수 : " + list.get(i).getAccusation() + " ");
+			System.out.println("=========================================================================");
+		}		
+	}
+	
+	//나의 게시글 삭제
+	public void deleteMyBoard() {
+		System.out.println("=================================내 게시글 삭제=================================");
+		System.out.println("삭제 게시글 번호 > ");
+		int boardNum = Integer.parseInt(sc.nextLine());
+		String myId = CafeService.cafeInfo.getCafeId();
+		
+		BoardInfo bi = new BoardInfo();
+		bi.setCafeId(myId);
+		bi.setGenre(genre);
+		bi.setBoardNum(boardNum);
+		
+		int result = BoardInfoDAO.getInstance().deleteMyBoard(bi);
+		
+		if(result > 0) {
+			System.out.println("게시글 삭제 완료");
+		}else {
+			System.out.println("게시글 삭제 실패");
+		}
+	}
 	
 }

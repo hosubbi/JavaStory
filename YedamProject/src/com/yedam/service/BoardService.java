@@ -100,41 +100,6 @@ public class BoardService {
 		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 기타장르======");
 		System.out.println("======================9. 이전 화면======================");
 		bi.getBoardInfoList();
-//		System.out.println("입력 >");
-//		enterBoardNum = Integer.parseInt(sc.nextLine());
-//		switch (enterBoardNum) {
-//			case 1:
-//			//1번 게시판 접속
-//				System.out.println("발라드 게시판 입니다");
-//				bi.getBoardInfo();
-//				break;
-//			case 2:
-//			//2번 게시판 접속
-//				break;		
-//			case 3:
-//			//3번 게시판 접속
-//				break;
-//			case 4:
-//			//4번 게시판 접속
-//				
-//				break;
-//			case 5:
-//			//4번 게시판 접속
-//				break;
-//			case 6:
-//			//6번 게시판 접속
-//				break;
-//			case 7:
-//			//7번 게시판 접속
-//				break;
-//			case 8:
-//			//8번 게시판 접속
-//				break;
-//			case 9:
-//			//9번 : 이전화면
-//				enterBoard();
-//				break;
-//		}
 	}
 	
 	public void connFMusic() {
@@ -153,4 +118,5 @@ public class BoardService {
 			break;
 		}
 	}
+	
 }
