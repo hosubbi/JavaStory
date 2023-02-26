@@ -97,7 +97,7 @@ public class BoardService {
 	public void connKMusic() {
 		System.out.println("☆★☆★☆★☆★☆★☆★☆★국내 음악 추천 게시판입니다★☆★☆★☆★☆★☆★☆★☆★☆");
 		System.out.println("=========1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B========");
-		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 그 외...=====");
+		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 기타장르======");
 		System.out.println("======================9. 이전 화면======================");
 		bi.getBoardInfoList();
 //		System.out.println("입력 >");

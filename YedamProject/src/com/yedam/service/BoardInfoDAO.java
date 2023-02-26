@@ -72,7 +72,7 @@ public class BoardInfoDAO extends DAO{
 //	
 //	}
 //----------------------------------------여기까지
-	
+	//특정 장르 게시판 조회
 	public List<BoardInfo> getBoardInfoList(int num){
 		List<BoardInfo> list = new ArrayList<>();
 		BoardInfo bi = null;
@@ -83,8 +83,9 @@ public class BoardInfoDAO extends DAO{
 					+ "where genre = (\r\n"
 					+ "                select board_name\r\n"
 					+ "                from generboard\r\n"
-					+ "                where board_num = ?\r\n"
-					+ "                )";
+					+ "                 where board_num = ?\n"
+					+ "                )\n"
+					+ "order by board_num";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			
@@ -114,6 +115,7 @@ public class BoardInfoDAO extends DAO{
 		return list;
 	}
 	
+	// 게시글 등록
 	public int insertMusic(BoardInfo bi) {
 		int result = 0;
 		try {
@@ -134,6 +136,59 @@ public class BoardInfoDAO extends DAO{
 			result = pstmt.executeUpdate();
 			
 		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	//게시글 수정 (본인) --수정중--
+	public int modifyMusic(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update boardinfo\n"
+					+ "set singer = ?, music = ?, album = ?, music_explain = ?, link_service = ?"
+					+ "where genre = ?\n"
+					+ "And board_num = ?\n"
+					+ "And cafe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bi.getSinger());
+			pstmt.setString(2, bi.getMusic());
+			pstmt.setString(3, bi.getAlbum());
+			pstmt.setString(4, bi.getMusicExplain());
+			pstmt.setString(5, bi.getLink());
+			pstmt.setString(6, bi.getGenre());
+			pstmt.setInt(7, bi.getBoardNum());
+			pstmt.setString(8, bi.getCafeId());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
+	//rs 테스트 해보기
+	public int testFunction(BoardInfo bi) {
+		int result = 0;
+		
+		try {
+			conn();
+			String sql = "select board_num\n"
+					+ "from generboard\n"
+					+ "where board_name = '트로트'";
+			
+			rs = pstmt.executeQuery();
+			
+			
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			disconn();

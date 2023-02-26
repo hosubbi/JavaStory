@@ -1,8 +1,8 @@
 package com.yedam.service;
 
 public class GenerBoard {
-	int boardNum;
-	String boardName;
+	private int boardNum;
+	private String boardName;
 	
 	public int getBoardNum() {
 		return boardNum;
