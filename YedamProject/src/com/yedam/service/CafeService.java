@@ -102,9 +102,9 @@ public class CafeService {
 			System.out.println("회원 번호    : " + cafe.getCafeId());
 			System.out.println("회원 이름    : " + cafe.getCafeName());
 			System.out.println("회원 비밀번호 : " + cafe.getCafePw());
-			System.out.println("회원 이메일  : " + cafe.getCafeEmail());
-			System.out.println("회원 가입일  : " + cafe.getJoinDate());
-			System.out.println("회원 등급   : " + cafe.getCafeGrade());
+			System.out.println("회원 이메일   : " + cafe.getCafeEmail());
+			System.out.println("회원 가입일   : " + cafe.getJoinDate());
+			System.out.println("회원 등급    : " + cafe.getCafeGrade());
 		}
 		System.out.println("==================================");
 	}

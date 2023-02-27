@@ -15,6 +15,38 @@ public class MemDAO extends DAO{
 		public static MemDAO getInstance() {
 			return mDao;
 		}
+		//본인 정보 조회
+		public Cafe getMem(String id) {
+			Cafe cafe = null;
+			try {
+				conn();
+				String sql = "SELECT *\r\n"
+						+ "FROM cafe\r\n"
+						+ "WHERE cafe_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cafe = new Cafe();
+					cafe.setCafeId(rs.getString("cafe_id"));
+					cafe.setCafeName(rs.getString("cafe_name"));
+					cafe.setCafePw(rs.getString("cafe_pw"));
+					cafe.setCafeEmail(rs.getString("cafe_email"));
+					cafe.setJoinDate(rs.getDate("cafe_joindate"));
+					cafe.setCafeGrade(rs.getString("cafe_grade"));  
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				disconn();
+			}
+			return cafe;
+		}
+		
+		
 		
 		//본인 비밀번호 수정
 		public int modifyMemPw(Cafe member) {

@@ -7,6 +7,23 @@ import java.util.Scanner;
 
 public class MemService {
 	Scanner sc = new Scanner(System.in);
+	//회원 본인 정보 조회
+	public void getMem() {
+		Cafe cafe = CafeDAO.getInstance().getCafe(CafeService.cafeInfo.getCafeId());
+		if(cafe == null) {
+			System.out.println("조회된 결과 없음.");
+		} else {
+			System.out.println("회원 번호    : " + cafe.getCafeId());
+			System.out.println("회원 이름    : " + cafe.getCafeName());
+			System.out.println("회원 비밀번호  : " + cafe.getCafePw());
+			System.out.println("회원 이메일   : " + cafe.getCafeEmail());
+			System.out.println("회원 가입일   : " + cafe.getJoinDate());
+			System.out.println("회원 등급    : " + cafe.getCafeGrade());
+		}
+		System.out.println("==================================");
+	}
+	
+	
 	
 	//회원 본인 비밀번호 변경
 	public void modifyMemPw() {	

@@ -12,7 +12,7 @@ public class BoardDAO extends DAO{
 		
 	}
 	
-	static BoardDAO getInstance() {
+	public static BoardDAO getInstance() {
 		return bDao;
 	}
 	

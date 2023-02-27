@@ -92,29 +92,33 @@ public class App {
 	
 	//회원으로 로그인 했을 때의 메뉴
 	private void memloginMenu() {
-		System.out.println("==================================================");
-		System.out.println("====1. 비밀번호 수정 | 2. 이메일 수정 | 3. 게시판 리스트 ====");
-		System.out.println("==============4. 카페 탈퇴 | 5. 로그 아웃==============");
+		System.out.println("==========================================================");
+		System.out.println("=========1.내 정보 조회 | 2. 비밀번호 수정 | 3. 이메일 수정==========");
+		System.out.println("=========4. 게시판 리스트 | 5. 카페 탈퇴 | 6. 로그 아웃=============");
 		System.out.println("입력>");
 		menu = sc.nextLine();
-		switch (menu) {
+		switch (menu) {		
 		case "1":
+		//내 정보 조회
+			ms.getMem();
+			break;
+		case "2":
 		//비밀번호 수정
 			ms.modifyMemPw();
 			break;
-		case "2":
+		case "3":
 		//이메일 수정
 			ms.modifyMemEmail();
 			break;		
-		case "3":
+		case "4":
 		//게시판 들어가기
 			bd.enterBoard();
 			break;
-		case "4":
+		case "5":
 		//탈퇴
 			ms.deleteMemOut();
 			break;
-		case "5":
+		case "6":
 		//이전 화면
 			logoutMenu();
 			break;

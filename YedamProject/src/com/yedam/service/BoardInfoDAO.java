@@ -74,16 +74,16 @@ public class BoardInfoDAO extends DAO{
 		return list;
 	}
 	
-	// 게시글 등록
+	// 게시글 등록 
 	public int insertMusic(BoardInfo bi) {
 		int result = 0;
 		try {
 			conn();
 			String sql ="Insert into boardinfo (board_num, cafe_id, singer, music, album, genre, music_explain, link_service, cafe_grade)\n"
-					+ "values (?, ?, ?, ?, ?, ?, ?, \n"
+					+ "values ((select count(*)+1 from boardinfo where genre = ?), ?, ?, ?, ?, ?, ?, \n"
 					+ "?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bi.getBoardNum());
+			pstmt.setString(1, bi.getGenre());
 			pstmt.setString(2, bi.getCafeId());
 			pstmt.setString(3, bi.getSinger());
 			pstmt.setString(4, bi.getMusic());
@@ -224,35 +224,52 @@ public class BoardInfoDAO extends DAO{
 		return result;
 	}
 	
+	//삭제 후 업데이트
+	public int delAfterUpdate(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update boardinfo\r\n"
+					+ "set board_num = board_num - 1\r\n"
+					+ "where board_num > ?\r\n"
+					+ "and genre = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bi.getBoardNum());
+			pstmt.setString(2, bi.getGenre());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
+	
 	//추천하기
-//	public int recomendMem() {
-//		int result = 0;
-//		try {
-//			conn();
-//			String sql = "update boardinfo\n"
-//					+ "set singer = ?, music = ?, album = ?, music_explain = ?, link_service = ?"
-//					+ "where genre = ?\n"
-//					+ "And board_num = ?\n"
-//					+ "And cafe_id = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, bi.getSinger());
-//			pstmt.setString(2, bi.getMusic());
-//			pstmt.setString(3, bi.getAlbum());
-//			pstmt.setString(4, bi.getMusicExplain());
-//			pstmt.setString(5, bi.getLink());
-//			pstmt.setString(6, bi.getGenre());
-//			pstmt.setInt(7, bi.getBoardNum());
-//			pstmt.setString(8, bi.getCafeId());
-//			
-//			
-//			result = pstmt.executeUpdate();
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			disconn();
-//		}
-//		return result;		
-//	}
+	public int recommendMem(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update boardinfo\r\n"
+					+ "set recomend_num = recomend_num + 1\r\n"
+					+ "where genre = ?\r\n"
+					+ "and board_num = ?";
+					
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bi.getGenre());
+			pstmt.setInt(2, bi.getBoardNum());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 	
 }

@@ -122,7 +122,7 @@ public class CafeDAO extends DAO{
 		return list;
 	}
 	
-	//관-2. 회원 정보 조회
+	//관-2. 특정 회원 정보 조회
 	public Cafe getCafe(String id) {
 		Cafe cafe = null;
 		try {
@@ -238,6 +238,8 @@ public class CafeDAO extends DAO{
 		}
 		return result;
 	}
+	
+
 		
 
 }		
