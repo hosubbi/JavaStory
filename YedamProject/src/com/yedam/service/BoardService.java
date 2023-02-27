@@ -68,7 +68,6 @@ public class BoardService {
 	
 	//4. 게시판 리스트
 	public void enterBoard() {
-//		App ap = new App();
 		List<Board> list = BoardDAO.getInstance().enterBoard();
 		System.out.println("=========================================================================");
 		for(int i=0; i<list.size(); i++) {
@@ -76,7 +75,8 @@ public class BoardService {
 			System.out.println(list.get(i).getBoardName());
 		}
 		System.out.println("=========================================================================");
-		System.out.print("입장할 게시판 번호를 입력하시오 > ");
+		System.out.print("입장할 게시판 번호를 입력하시오 > (0을 입력면 이전 화면으로 돌아갑니다)");
+		
 		enterBoardNum = Integer.parseInt(sc.nextLine());
 		
 		
@@ -86,7 +86,13 @@ public class BoardService {
 		}else if (enterBoardNum == 2){
 			System.out.println(list.get(enterBoardNum-1).getBoardName() + "에 입장합니다");
 			connFMusic();
-		}else {
+		}else if (enterBoardNum == 0) {
+			
+		}else if (enterBoardNum == 1234) {
+			App ap = new App();
+			ap.BoardMenu();
+		}
+		else {
 			System.out.println("게시판이 없습니다.");
 			enterBoard();
 		}
@@ -99,7 +105,7 @@ public class BoardService {
 		System.out.println("=========1. 발라드 | 2. 댄스 | 3. 랩/힙합 | 4. R&B========");
 		System.out.println("=====5. 인디 음악 | 6. 록/메탈 | 7. 트로트 | 8. 기타장르======");
 		System.out.println("======================9. 이전 화면======================");
-		bi.getBoardInfoList();
+		bi.getBoardInfoList1();
 	}
 	
 	public void connFMusic() {

@@ -133,32 +133,6 @@ public class BoardInfoDAO extends DAO{
 		return result;
 	}
 	
-	//rs 테스트 해보기
-	public BoardInfo testFunction(String bi) {
-		BoardInfo bdi = null;
-		
-		try {
-			conn();
-			String sql = "select count(*)\n"
-					+ "from boardinfo\n"
-					+ "where genre = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bi);
-						
-			rs  = pstmt.executeQuery();
-			
-			if (rs.next()){
-				bdi = new BoardInfo();
-				bdi.setGenre(rs.getString("genre"));
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			disconn();
-		}
-		return bdi;
-	}
-	
 	//나의 게시글 리스트
 	public List<BoardInfo> myBoardList(String Boardkey, String bdkey) {
 		List<BoardInfo> list = new ArrayList<>();
@@ -168,7 +142,8 @@ public class BoardInfoDAO extends DAO{
 			String sql = "select *\n"
 					+ "from boardinfo\n"
 					+ "where cafe_id = ?\n"
-					+ "and genre = ?";
+					+ "and genre = ?\n"
+					+ "order by board_num";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, Boardkey);
 			pstmt.setString(2, bdkey);
@@ -272,4 +247,27 @@ public class BoardInfoDAO extends DAO{
 		return result;
 	}
 	
+	//신고하기
+	public int accusationMem(BoardInfo bi) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update boardinfo\r\n"
+					+ "set accusation = accusation + 1\r\n"
+					+ "where genre = ?\r\n"
+					+ "and board_num = ?";
+					
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bi.getGenre());
+			pstmt.setInt(2, bi.getBoardNum());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconn();
+		}
+		return result;
+	}
 }

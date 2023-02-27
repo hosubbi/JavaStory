@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BoardInfoService {
 	Scanner sc = new Scanner(System.in);
 	boolean run = true;
-	int enterGenre = 0;
+	private int enterGenre = 0;
 	private int deleteNum = 0;
 	public static String genre = null;
 	//private에서 바꿈
@@ -60,7 +60,7 @@ public class BoardInfoService {
 //-------------------------------------------여기까지
 	
 	//장르별 게시판 입장 후 게시판에 대한 메뉴 들어가기
-	public void getBoardInfoList() {
+	public void getBoardInfoList1() {
 		CommentsService cts = new CommentsService();
 		BoardService bs = new BoardService();
 		System.out.println("입장할 게시판 번호를 입력하시오 >");
@@ -95,13 +95,16 @@ public class BoardInfoService {
 			break;
 		default:
 			System.out.println("다시 입력해주세요.");
-			getBoardInfoList();
+			
 		}
-		while (run) {
+		getBoardInfoList();
+	}
+	public void getBoardInfoList() {
+		while(run) {
 			List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList(enterGenre);		
 			System.out.println("==========================●●●" + genre +  " 게시판 입니다●●●==========================");
 				for(int i=0; i<list.size(); i++) {
-					System.out.println("◎No : " + list.get(i).getBoardNum() + " ");
+					System.out.println("◎No." + list.get(i).getBoardNum() + " ");
 					System.out.print("◎ID : " + list.get(i).getCafeId() + " ");
 					System.out.print("◎가수 : " + list.get(i).getSinger() + " ");
 					System.out.print("◎노래 제목 : " + list.get(i).getMusic() + " ");
@@ -121,6 +124,9 @@ public class BoardInfoService {
 			System.out.println("===========================================================================");
 			System.out.print("메뉴 >");
 			int inputNum = Integer.parseInt(sc.nextLine());
+			CommentsService cts = new CommentsService();
+			BoardService bs = new BoardService();
+		
 			switch (inputNum) {
 				case 1:
 					// 게시글 등록
@@ -149,6 +155,7 @@ public class BoardInfoService {
 					break;				
 				case 6:
 					//신고 하기
+					accusationMem();
 					break;
 				case 7:
 					//이전 화면
@@ -158,10 +165,9 @@ public class BoardInfoService {
 					System.out.println("※잘못 입력된 번호 입니다. 다시 입력해주세요.");
 					continue;
 					
-			}	
+				}				
 		}
-		
-	}
+	}	
 	
 	//추천 음악 등록
 	public void insertMusic() {
@@ -218,7 +224,7 @@ public class BoardInfoService {
 		}
 	}
 
-	//게시글 수정(본인) --수정중--
+	//게시글 수정(본인)
 	public void modifyMusic() {
 		BoardInfo bi = new BoardInfo();
 		System.out.println("변경 할 게시글 번호 ※본인 게시글만 가능 >");
@@ -336,9 +342,9 @@ public class BoardInfoService {
 		//게시글 id != 로그인아이디 일경우 조건제시!!!!!!!!!!! --수정중--
 		
 		if(result > 0) {
-			System.out.println("게시글 번호 수정 완료");
+			System.out.println("게시글 번호가 갱신됩니다.");
 		} else {
-			System.out.println("게시글 번호 수정 실패");
+			System.out.println("게시글이 없습니다.");
 		}
 		
 	}
@@ -366,7 +372,28 @@ public class BoardInfoService {
 		
 	}
 	
-	
+	//신고하기
+	public void accusationMem() {
+		BoardInfo bi = new BoardInfo();
+		System.out.println("신고 할 게시글 번호 ※본인 게시글은 불가 >");
+		bi.setBoardNum(Integer.parseInt(sc.nextLine()));
+
+		//본인 카페 아이디
+//		String cafeId = CafeService.cafeInfo.getCafeId();
+		
+		bi.setGenre(genre);
+		int result = BoardInfoDAO.getInstance().accusationMem(bi);
+		
+
+		//게시글 id != 로그인아이디 일경우 조건제시!!!!!!!!!!! --수정중--
+		
+		if(result > 0) {			
+			System.out.println("게시글 신고 완료");			
+		}else {
+			System.out.println("※본인 게시글이거나 게시글이 없습니다※");
+		}
+		
+	}
 	
 	
 }

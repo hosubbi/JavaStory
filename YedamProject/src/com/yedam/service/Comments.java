@@ -3,14 +3,16 @@ package com.yedam.service;
 import java.sql.Date;
 
 public class Comments {
-//	BOARD_NUM         NUMBER(5)     
+//	BOARD_NUM         NUMBER(5) 
+// 	MUSIC             VARCHAR2(90)
 //	CAFE_ID           VARCHAR2(15)  
 //	COMMENTS_GENRE    VARCHAR2(30)  
 //	COMMENTS          VARCHAR2(600) 
 //	COMMENTS_DATE     DATE
 	
 	private int boardNum;
-	private int comentsNum;
+	private int commentsNum;
+	private String music;
 	private String cafeId;
 	private String commentsGenre;
 	private String comments;
@@ -23,11 +25,17 @@ public class Comments {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public int getComentsNum() {
-		return comentsNum;
+	public int getCommentsNum() {
+		return commentsNum;
 	}
-	public void setComentsNum(int comentsNum) {
-		this.comentsNum = comentsNum;
+	public void setCommentsNum(int commentsNum) {
+		this.commentsNum = commentsNum;
+	}
+	public String getMusic() {
+		return music;
+	}
+	public void setMusic(String music) {
+		this.music = music;
 	}
 	public String getCafeId() {
 		return cafeId;
