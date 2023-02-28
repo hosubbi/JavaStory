@@ -133,7 +133,7 @@ public class BoardInfoDAO extends DAO{
 		return result;
 	}
 	
-	//나의 게시글 리스트
+	//내 게시글 리스트
 	public List<BoardInfo> myBoardList(String Boardkey, String bdkey) {
 		List<BoardInfo> list = new ArrayList<>();
 		BoardInfo bi = null;		
@@ -199,7 +199,7 @@ public class BoardInfoDAO extends DAO{
 		return result;
 	}
 	
-	//삭제 후 업데이트
+	//삭제 후 번호 +1 업데이트
 	public int delAfterUpdate(BoardInfo bi) {
 		int result = 0;
 		try {
@@ -270,4 +270,6 @@ public class BoardInfoDAO extends DAO{
 		}
 		return result;
 	}
+	
+	
 }

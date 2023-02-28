@@ -46,7 +46,7 @@ public class App {
 		System.out.println("====================================================");
 		System.out.println("=======1. 모든 회원 조회 | 2. 회원 조회 | 3. 회원 등록 ======");
 		System.out.println("=======4. 회원 정보 수정 | 5. 회원 강퇴 | 6. 게시판 메뉴======");
-		System.out.println("=======================7. 종    료===================");
+		System.out.println("=======================7. 로그 아웃====================");
 		System.out.println("====================================================");
 		System.out.println("입력 >");
 		menu = sc.nextLine();
@@ -82,8 +82,7 @@ public class App {
 				BoardMenu();
 				break;				
 			case "7":
-				System.out.println("종료합니다.");
-				run = false;
+				logoutMenu();
 				break;
 			}
 		}
@@ -92,10 +91,11 @@ public class App {
 	
 	//회원으로 로그인 했을 때의 메뉴
 	private void memloginMenu() {
-		System.out.println("==========================================================");
-		System.out.println("=========1.내 정보 조회 | 2. 비밀번호 수정 | 3. 이메일 수정==========");
-		System.out.println("=========4. 게시판 리스트 | 5. 카페 탈퇴 | 6. 로그 아웃=============");
-		System.out.println("입력>");
+		System.out.println("===========================================================");
+		System.out.println("=========1. 내 정보 조회 | 2. 비밀번호 수정 | 3. 이메일 수정==========");
+		System.out.println("==========4. 게시판 리스트 | 5. 카페 탈퇴 | 6. 로그 아웃=============");
+		System.out.println("===========================================================");
+		System.out.print("메뉴 입력 > ");
 		menu = sc.nextLine();
 		switch (menu) {		
 		case "1":
@@ -119,7 +119,7 @@ public class App {
 			ms.deleteMemOut();
 			break;
 		case "6":
-		//이전 화면
+		//로그 아웃
 			logoutMenu();
 			break;
 		}
@@ -127,8 +127,9 @@ public class App {
 	
 	//로그인 안되어있을 때 메뉴
 	private void logoutMenu() {
+		System.out.println("♬♪♬♪♬♪♬♪♬♪♬♪♬♪♬♪♬♪음악 추천 카페♪♬♪♬♪♬♪♬♪♬♪♬♪♬♪♬♪♬");
 		System.out.println("1. 로그인 | 2. 회원가입 | 3. 종료");
-		System.out.println("입력 >");
+		System.out.print("메뉴 선택 >");
 		menu = sc.nextLine();
 		if(menu.equals("1")) {
 			cf.login();			
@@ -136,7 +137,7 @@ public class App {
 			cf.joinCafe();
 		}else if(menu.equals("3")) {
 			run = false;
-			System.out.println("프로그램 종료");
+			System.out.println("종료");
 		}
 	}
 	//관리자 게시판 메뉴 접속 
@@ -175,11 +176,6 @@ public class App {
 			}
 		}
 	}
-	
-	
-	
-	
-	
 	
 	
 

@@ -83,7 +83,7 @@ public class DAO {
 	// 프로그램 종료하지 않고 수정된 DB 관련 내용을 적용시킬 수 있다.
 	private void getProperties() {
 		try {
-			FileReader resource = new FileReader("src/config/db.properties");
+			FileReader resource = new FileReader("db.properties");
 			pro.load(resource);
 			driver = pro.getProperty("driver");
 			url = pro.getProperty("url");

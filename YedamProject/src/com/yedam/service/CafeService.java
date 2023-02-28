@@ -25,12 +25,12 @@ public class CafeService {
 		if(cafe != null) { //데이터가 조회 되었다.
 			if(cafe.getCafeId().equals("king")  && cafe.getCafePw().equals(cafePw)) {
 				System.out.println(cafe.getCafeId() + "님은 관리자입니다.");
-				System.out.println("관리자 로그인 성공✔");
+				System.out.println("관리자 로그인 성공♬");
 				cafeInfo = cafe;
 				grade = "host";
 			}else if(cafe.getCafePw().equals(cafePw)){
 				System.out.println(cafe.getCafeId() + "님은 회원입니다");
-				System.out.println("회원 로그인 성공✔");
+				System.out.println("회원 로그인 성공♬");
 				cafeInfo = cafe;
 				grade = "member";
 			}
@@ -44,8 +44,6 @@ public class CafeService {
 		
 	//2 회원가입 메뉴	
 	public void joinCafe() {
-		
-
 		System.out.println("====================회원 가입====================");
 		System.out.println("회원 아이디>");
 		String cafeId = sc.nextLine();

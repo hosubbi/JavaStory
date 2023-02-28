@@ -75,7 +75,7 @@ public class BoardService {
 			System.out.println(list.get(i).getBoardName());
 		}
 		System.out.println("=========================================================================");
-		System.out.print("입장할 게시판 번호를 입력하시오 > (0을 입력면 이전 화면으로 돌아갑니다)");
+		System.out.print("입장할 게시판 번호를 입력하시오 > (0을 입력하면 이전 화면으로 돌아갑니다)");
 		
 		enterBoardNum = Integer.parseInt(sc.nextLine());
 		
@@ -87,8 +87,6 @@ public class BoardService {
 			System.out.println(list.get(enterBoardNum-1).getBoardName() + "에 입장합니다");
 			connFMusic();
 		}else if (enterBoardNum == 0) {
-			
-		}else if (enterBoardNum == 1234) {
 			App ap = new App();
 			ap.BoardMenu();
 		}

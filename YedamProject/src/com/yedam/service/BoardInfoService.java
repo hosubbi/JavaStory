@@ -7,59 +7,15 @@ import java.util.Scanner;
 public class BoardInfoService {
 	Scanner sc = new Scanner(System.in);
 	boolean run = true;
-	private int enterGenre = 0;
+	public static int enterGenre = 0;
 	private int deleteNum = 0;
 	public static String genre = null;
+	public static String blank = "-";
 	//private에서 바꿈
 	private boolean deleteSuccess = true;
-//	public void getBoardInfoList() {
-//		
-//		List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList();
-//		System.out.println("=======================================================================");
-//		for(int i=0; i<list.size(); i++) {
-//			System.out.print("◎ID : " + list.get(i).getCafeId() + " ");
-//			System.out.print("◎가수 : " + list.get(i).getSinger() + " ");
-//			System.out.print("◎노래 제목 : " + list.get(i).getMusic() + " ");
-//			System.out.print("◎앨범 제목 : " + list.get(i).getAlbum() + " ");
-//			System.out.println("◎장르 : " + list.get(i).getGenre() + " ");
-//			System.out.println("◎추천 이유 : " + list.get(i).getMusicExplain() + " ");
-//			System.out.println("◎링크 : " + list.get(i).getLink() + " ");
-//			System.out.print("◎작성일 : " + list.get(i).getWriteDate() + " ");
-//			System.out.print("◎카페 등급 : " + list.get(i).getCafeGrade() + " ");
-//			System.out.print("◎추천수 : " + list.get(i).getRecomendNum() + " ");
-//			System.out.println("◎신고수 : " + list.get(i).getAccusation() + " ");
-//			System.out.println("=======================================================================");
-//		}
+
 	
-//	}
-	
-//----------------------------------------잠시 보류
-//	public void getBoardInfo() {
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("게시판 번호 입력 >");
-//		BoardInfo bi = BoardInfoDAO.getInstance().getBoardInfo(Integer.parseInt(sc.nextLine()));
-//		//반복문 주기
-//		if(bi == null) {
-//			System.out.println("조회된 결과 없음.");
-//		} else {
-//			System.out.print("◎ no : " + bi.getBoardNum() + " ");
-//			System.out.print("◎ ID : " + bi.getCafeId() + " ");
-//			System.out.print("◎ 가수 이름 : " + bi.getSinger() + " ");
-//			System.out.print("◎ 노래 제목 : " + bi.getMusic() + " ");
-//			System.out.print("◎ 앨범 제목 : " + bi.getAlbum() + " ");
-//			System.out.println("◎ 장르 : " + bi.getGenre() + " ");
-//			System.out.println("◎ 추천 이유 : " + bi.getMusicExplain() + " ");
-//			System.out.println("◎ 링크 : " + bi.getLink() + " ");
-//			System.out.print("◎ 작성일 : " + bi.getWriteDate() + " ");
-//			System.out.print("◎ 카페 등급 : " + bi.getCafeGrade() + " ");
-//			System.out.print("◎ 추천수 : " + bi.getRecomendNum() + " ");
-//			System.out.println("◎ 신고수 : " + bi.getAccusation() + " ");
-//		}
-//		System.out.println("====================================================");
-//	}
-//-------------------------------------------여기까지
-	
-	//장르별 게시판 입장 후 게시판에 대한 메뉴 들어가기
+	//장르별 게시판 선택
 	public void getBoardInfoList1() {
 		CommentsService cts = new CommentsService();
 		BoardService bs = new BoardService();
@@ -100,8 +56,9 @@ public class BoardInfoService {
 		getBoardInfoList();
 	}
 	public void getBoardInfoList() {
+		
+		List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList(enterGenre);		
 		while(run) {
-			List<BoardInfo> list = BoardInfoDAO.getInstance().getBoardInfoList(enterGenre);		
 			System.out.println("==========================●●●" + genre +  " 게시판 입니다●●●==========================");
 				for(int i=0; i<list.size(); i++) {
 					System.out.println("◎No." + list.get(i).getBoardNum() + " ");
@@ -131,11 +88,13 @@ public class BoardInfoService {
 				case 1:
 					// 게시글 등록
 					insertMusic();
+					getBoardInfoList();
 					break;
 				case 2:
 					// 본인 게시글 리스트 확인 후 수정
 					myBoardList();
 					modifyMusic();
+					getBoardInfoList();
 					break;
 				case 3:
 					// 본인 게시글 리스트 확인 후 게시글 삭제
@@ -143,7 +102,8 @@ public class BoardInfoService {
 					deleteMyBoard();
 					if(deleteSuccess == true) {
 						delAfterUpdate();
-					}									
+					}
+					getBoardInfoList();
 					break;
 				case 4:
 					//댓글방
@@ -152,10 +112,12 @@ public class BoardInfoService {
 				case 5:
 					//추천하기
 					recommendMem();
+					getBoardInfoList();
 					break;				
 				case 6:
 					//신고 하기
 					accusationMem();
+					getBoardInfoList();
 					break;
 				case 7:
 					//이전 화면
@@ -188,11 +150,9 @@ public class BoardInfoService {
 		String music = sc.nextLine();
 		
 		
-		System.out.println("앨범 제목 (생략 가능) >");
+		System.out.println("앨범 제목 (생략 가능) >");		
 		String album = sc.nextLine();	
-		
-//		장르 가져오기 --> genre로 값 받아서 넣음
-//		String genre1 = genre;
+
 		
 		System.out.println("추천 이유 (생략 가능) >");
 		String musicEx = sc.nextLine();
@@ -208,11 +168,28 @@ public class BoardInfoService {
 		
 		bi.setCafeId(cafeId);
 		bi.setSinger(singer);
-		bi.setMusic(music);		
-		bi.setAlbum(album);
+		bi.setMusic(music);
+		
+		if(album == "") {
+			bi.setAlbum(blank);
+		}else {;
+			bi.setAlbum(album);
+		}		
+		
 		bi.setGenre(genre);
-		bi.setMusicExplain(musicEx);
-		bi.setLink(link);
+		
+		if(musicEx == "") {
+			bi.setMusicExplain(blank);
+		}else {
+			bi.setMusicExplain(musicEx);
+		}
+		
+		if(link == "") {
+			bi.setLink(blank);
+		}else {
+			bi.setLink(link);
+		}
+		
 		bi.setCafeGrade(cafeGrade);
 		
 		int result = BoardInfoDAO.getInstance().insertMusic(bi);
