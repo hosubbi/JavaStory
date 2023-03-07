@@ -8,13 +8,24 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		int n = sc.nextInt();
 		String num = sc.next();
-		
-		int sum = 0;
-		for(int i=0; i<n; i++) {
-			sum += num.charAt(i)-'0';
+		int alpabet[] = new int[26];
+		for(int i=1; i<alpabet.length; i++) {
+			alpabet[0] = 99;
+			alpabet[i] = alpabet[i-1]+1;
 		}
-		System.out.println(sum);
+		
+		for(int i=0; i<num.length(); i++) {
+			for(int j=0; j<alpabet.length; j++) {
+				if(alpabet[j] == (num.charAt(i)-'0'+48)) {
+					alpabet[j] = i;
+				}
+				
+			}
+			
+		}
+		for (int obj : alpabet) {
+			System.out.println(obj);
+		}
 	}
 }
